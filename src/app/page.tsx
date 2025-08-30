@@ -133,7 +133,7 @@ export default function HomePage() {
       <header className="container mx-auto py-6 flex items-center justify-between relative z-10 px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2 group">
           <Icons.logo className="h-8 w-8 text-primary transition-transform duration-300 group-hover:rotate-[360deg]" />
-          <span className="text-2xl font-bold font-headline bg-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent">
+          <span className="text-2xl font-bold font-headline bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
             MediCare
           </span>
         </Link>
@@ -224,7 +224,7 @@ export default function HomePage() {
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight font-headline mb-6">
                 Check. Connect. Cure.{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-teal-400">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-500">
                   Seamlessly
                 </span>{" "}
                 — powered by AI.
@@ -238,7 +238,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-orange-500 to-teal-400 hover:opacity-90 text-white font-semibold shadow-lg border-2 border-orange-300"
+                  className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold shadow-lg"
                   asChild
                 >
                   <Link href="/dashboard">

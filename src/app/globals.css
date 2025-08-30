@@ -4,101 +4,101 @@
 
 @layer base {
   :root {
-    /* Light Mode - Clean White & Adjusted Emerald Green with Sage Secondary */
-    --background: 0 0% 98%; /* Very Light Gray / Almost White */
-    --foreground: 240 10% 3.9%; /* Near Black */
+    /* Light Mode - Classic Medical Blue Theme */
+    --background: 210 20% 98%; /* Light Gray/White - clean, minimal */
+    --foreground: 210 11% 15%; /* Charcoal - good readability */
 
     --muted: 210 20% 94%; /* Light Cool Gray */
-    --muted-foreground: 240 5% 35%; /* Medium-Dark Gray */
+    --muted-foreground: 210 11% 20%; /* Medium-Dark Charcoal */
 
     --popover: 0 0% 100%; /* White for Popovers */
-    --popover-foreground: 240 10% 3.9%; /* Near Black */
+    --popover-foreground: 210 11% 15%; /* Charcoal */
 
     --card: 0 0% 100%; /* White */
-    --card-foreground: 240 10% 3.9%; /* Near Black */
+    --card-foreground: 210 11% 15%; /* Charcoal */
 
     --border: 210 15% 88%; /* Light Cool Gray Border */
     --input: 210 15% 94%; /* Very Light Cool Gray Input Background */
 
-    /* Adjusted Light Mode Greens for better vibrancy and appeal */
-    --primary: 158 75% 42%; /* Slightly brighter and more vibrant Emerald Green for light mode */
-    --primary-foreground: 0 0% 100%; /* White for contrast on green */
+    /* Classic Medical Blue Theme Colors */
+    --primary: 218 89% 56%; /* Bright Medical Blue - trust, reliability */
+    --primary-foreground: 0 0% 100%; /* White for contrast on blue */
 
-    --secondary: 135 29% 51%; /* Soft Muted Sage Green - remains good for light mode */
-    --secondary-foreground: 135 25% 15%; /* Dark, desaturated sage for contrast */
+    --secondary: 145 63% 42%; /* Green - health, recovery */
+    --secondary-foreground: 0 0% 100%; /* White for contrast on green */
 
-    --accent: 158 70% 50%; /* Brighter Emerald for accents in light mode - good vibrancy */
+    --accent: 28 83% 60%; /* Orange - warmth, call-to-action */
     --accent-foreground: 0 0% 100%; /* White */
 
     --destructive: 0 84% 60%; /* Modern Red */
     --destructive-foreground: 0 0% 100%; /* White */
 
-    --ring: 158 75% 45%; /* Adjusted Emerald Green for ring in light mode */
+    --ring: 218 89% 56%; /* Medical Blue for ring */
 
     --radius: 0.75rem;
 
-    /* Sidebar specific colors */
-    --sidebar-background: 0 0% 96%;
-    --sidebar-foreground: 240 10% 3.9%;
-    --sidebar-primary: 158 75% 42%; /* Adjusted for light mode */
+    /* Sidebar specific colors - Classic Medical Blue Theme */
+    --sidebar-background: 210 20% 96%;
+    --sidebar-foreground: 210 11% 15%;
+    --sidebar-primary: 218 89% 56%; /* Medical Blue */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 210 20% 90%;
-    --sidebar-accent-foreground: 158 75% 38%; /* Darker Green for hover text on light bg */
+    --sidebar-accent-foreground: 218 89% 45%; /* Darker Blue for hover text */
     --sidebar-border: 210 15% 85%;
-    --sidebar-ring: 158 75% 45%; /* Adjusted for light mode */
+    --sidebar-ring: 218 89% 56%; /* Medical Blue */
 
-    --chart-1: 158 75% 42%; /* Primary Emerald (Light Adjusted) */
-    --chart-2: 135 29% 51%; /* Secondary Sage Green (Light) */
-    --chart-3: 190 30% 50%; /* Muted Teal/Blue for contrast (Light) */
-    --chart-4: 158 40% 28%; /* Darker Emerald/Teal (Light) */
-    --chart-5: 210 5% 50%; /* Neutral Gray (Light) */
+    --chart-1: 218 89% 56%; /* Primary Medical Blue */
+    --chart-2: 145 63% 42%; /* Secondary Green */
+    --chart-3: 28 83% 60%; /* Accent Orange */
+    --chart-4: 218 60% 35%; /* Darker Blue */
+    --chart-5: 210 5% 50%; /* Neutral Gray */
   }
 
   .dark {
-    /* Dark Mode - Black Aesthetic & Emerald Green with Sage Secondary */
-    --background: 220 15% 5%; /* Very Dark, Almost Black with a hint of blue */
-    --foreground: 0 0% 92%; /* Slightly Off-White for softer contrast */
+    /* Dark Mode - Classic Medical Blue Theme (Dark Version) */
+    --background: 220 15% 8%; /* Very Dark Background */
+    --foreground: 0 0% 92%; /* Light Text */
 
     --muted: 220 15% 15%; /* Dark Gray */
     --muted-foreground: 0 0% 60%; /* Medium Light Gray */
 
-    --popover: 220 15% 8%; /* Darker Popovers */
-    --popover-foreground: 0 0% 92%; /* Slightly Off-White */
+    --popover: 220 15% 10%; /* Darker Popovers */
+    --popover-foreground: 0 0% 92%; /* Light Text */
 
-    --card: 220 15% 10%; /* Dark Card, distinct from background */
-    --card-foreground: 0 0% 92%; /* Slightly Off-White */
+    --card: 220 15% 12%; /* Dark Card */
+    --card-foreground: 0 0% 92%; /* Light Text */
 
     --border: 220 15% 18%; /* Subtle Border */
     --input: 220 15% 15%; /* Dark Input Background */
 
-    --primary: 158 70% 45%; /* Vibrant Emerald Green (Dark Mode Primary) */
+    --primary: 218 89% 65%; /* Brighter Medical Blue for dark mode */
     --primary-foreground: 0 0% 100%; /* White */
 
-    --secondary: 135 29% 51%; /* Soft Muted Sage Green (Consistent for both modes) */
-    --secondary-foreground: 135 25% 88%; /* Light, desaturated sage for contrast on dark */
+    --secondary: 145 63% 50%; /* Brighter Green for dark mode */
+    --secondary-foreground: 0 0% 100%; /* White */
 
-    --accent: 158 80% 55%; /* Brighter Emerald for accent (Dark Mode Accent) */
-    --accent-foreground: 240 10% 3.9%; /* Near Black for contrast on bright green */
+    --accent: 28 83% 65%; /* Brighter Orange for dark mode */
+    --accent-foreground: 0 0% 100%; /* White */
 
-    --destructive: 0 75% 60%; /* Brighter Red for dark mode */
+    --destructive: 0 75% 60%; /* Red for dark mode */
     --destructive-foreground: 0 0% 100%; /* White */
 
-    --ring: 158 70% 50%; /* Emerald for ring (Dark Mode) */
+    --ring: 218 89% 65%; /* Medical Blue for ring */
 
     /* Sidebar specific colors for dark mode */
-    --sidebar-background: 220 15% 4%; /* Even darker sidebar */
+    --sidebar-background: 220 15% 6%; /* Even darker sidebar */
     --sidebar-foreground: 0 0% 92%;
-    --sidebar-primary: 158 70% 45%;
+    --sidebar-primary: 218 89% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 15% 12%;
-    --sidebar-accent-foreground: 158 70% 55%; /* Brighter Green for hover text */
+    --sidebar-accent-foreground: 218 89% 70%; /* Brighter Blue for hover text */
     --sidebar-border: 220 15% 10%;
-    --sidebar-ring: 158 70% 50%;
+    --sidebar-ring: 218 89% 65%;
 
-    --chart-1: 158 70% 45%; /* Primary Emerald (Dark) */
-    --chart-2: 135 29% 51%; /* Secondary Sage Green (Dark) - Consistent */
-    --chart-3: 190 40% 55%; /* Muted Teal/Blue (Dark) */
-    --chart-4: 158 50% 30%; /* Darker Emerald/Teal (Dark) */
+    --chart-1: 218 89% 65%; /* Primary Medical Blue (Dark) */
+    --chart-2: 145 63% 50%; /* Secondary Green (Dark) */
+    --chart-3: 28 83% 65%; /* Accent Orange (Dark) */
+    --chart-4: 218 60% 40%; /* Darker Blue (Dark) */
     --chart-5: 210 5% 55%; /* Neutral Gray (Dark) */
   }
 }

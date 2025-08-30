@@ -2,6 +2,7 @@
 // AppProvider is
 import type * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { AuthProvider } from "@/components/providers/auth-provider";
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
@@ -11,7 +12,9 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <AuthProvider>
+        {children}
+      </AuthProvider>
     </NextThemesProvider>
   );
 }

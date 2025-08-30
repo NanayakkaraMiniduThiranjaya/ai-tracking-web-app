@@ -10,6 +10,73 @@ You can check out the live demo of the project here: 💖 [MediCare - Live Demo]
 
 MediCare combines cutting-edge AI technology and robust web frameworks to provide an intuitive platform for managing health and medical tasks. Users can interact with AI-powered tools for symptom checking, medical image analysis, drug interaction checking, and more.
 
+## 🔐 Authentication System
+
+MediCare now includes a comprehensive authentication system with:
+
+- **Google OAuth Integration** - Sign in with your Google account
+- **Facebook OAuth Integration** - Sign in with your Facebook account  
+- **Protected Routes** - Dashboard and user-specific features require authentication
+- **Session Management** - Secure JWT-based session handling
+- **User Profile Integration** - Personalized experience based on user information
+
+### Setting up Authentication
+
+1. **Environment Variables**: Copy `.env.local` and configure:
+   ```env
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=your-super-secret-key-here-change-this-in-production
+   
+   # Google OAuth (Get from Google Cloud Console)
+   GOOGLE_CLIENT_ID=your-google-client-id
+   GOOGLE_CLIENT_SECRET=your-google-client-secret
+   
+   # Facebook OAuth (Get from Facebook Developers)
+   FACEBOOK_CLIENT_ID=your-facebook-client-id
+   FACEBOOK_CLIENT_SECRET=your-facebook-client-secret
+   
+   # MongoDB Database
+   MONGODB_URI=mongodb+srv://username:password@cluster0.xxx.mongodb.net/database?retryWrites=true&w=majority
+   ```
+
+2. **MongoDB Setup**:
+   - Create a MongoDB Atlas account at [mongodb.com](https://www.mongodb.com/cloud/atlas)
+   - Create a new cluster
+   - Create a database user with read/write permissions
+   - Get your connection string and replace the placeholder values
+   - Whitelist your IP address in Network Access
+
+3. **Google OAuth Setup**:
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select existing
+   - Enable Google+ API
+   - Create OAuth 2.0 credentials
+   - Add authorized redirect URIs: `http://localhost:3000/api/auth/callback/google`
+
+4. **Facebook OAuth Setup**:
+   - Go to [Facebook Developers](https://developers.facebook.com/)
+   - Create a new app
+   - Add Facebook Login product
+   - Configure OAuth redirect URIs: `http://localhost:3000/api/auth/callback/facebook`
+
+### Authentication Features
+
+- **Sign In Page**: Beautiful, responsive sign-in interface at `/auth/signin`
+- **Error Handling**: Comprehensive error handling at `/auth/error`
+- **Protected Dashboard**: User must be authenticated to access dashboard
+- **User Session**: Displays user information in the sidebar and header
+- **User Profile**: Complete profile management at `/dashboard/profile`
+- **MongoDB Integration**: Persistent user data storage
+- **Sign Out**: Secure sign out functionality
+
+### Database Features
+
+- **User Profiles**: Complete user information including medical data
+- **Emergency Contacts**: Store emergency contact information
+- **Medical Information**: Track allergies, medications, conditions
+- **User Preferences**: Customizable app settings and notifications
+- **Session Management**: Secure database-backed sessions
+
 ---
 
 ## ✨ Key Features

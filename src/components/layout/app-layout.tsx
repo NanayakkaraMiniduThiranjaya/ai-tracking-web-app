@@ -2,9 +2,20 @@
 
 import React from "react";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 import { Icons } from "@/components/icons";
 import { SidebarNav } from "./sidebar-nav"; // The navigation links component for the sidebar
 import { ThemeToggleButton } from "./theme-toggle-button"; // Button to switch between light/dark mode
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarProvider, // Context provider to manage sidebar state (expanded/collapsed, mobile open/closed)
   Sidebar,
@@ -17,6 +28,12 @@ import {
 
 // The AppLayout component receives 'children' which will be the actual page content
 export function AppLayout({ children }: { children: React.ReactNode }) {
+  const { data: session, status } = useSession();
+
+  const handleSignOut = () => {
+    signOut({ callbackUrl: "/" });
+  };
+
   return (
     // SidebarProvider wraps the entire layout. It manages the state of the sidebar (open, collapsed, mobile view).
     // defaultOpen means the sidebar will be expanded by default on desktop.
@@ -46,7 +63,27 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           {/* SidebarFooter: A small section at the bottom of the sidebar.
               border-t adds a top border. */}
           <SidebarFooter className="p-4 border-t">
-            <p className="text-xs text-muted-foreground text-center group-data-[collapsible=icon]:hidden">
+            {session?.user && (
+              <div className="group-data-[collapsible=icon]:hidden">
+                <div className="flex items-center gap-2 text-sm">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={session.user.image || ""} />
+                    <AvatarFallback>
+                      {session.user.name?.charAt(0) || "U"}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1 overflow-hidden">
+                    <p className="text-sm font-medium truncate">
+                      {session.user.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {session.user.email}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            <p className="text-xs text-muted-foreground text-center group-data-[collapsible=icon]:hidden mt-2">
               MediCare App
             </p>
           </SidebarFooter>
@@ -61,6 +98,40 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <SidebarTrigger className="md:hidden" />
 
             <div className="flex-1"></div>
+
+            {/* User Menu */}
+            {session?.user && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={session.user.image || ""} />
+                      <AvatarFallback>
+                        {session.user.name?.charAt(0) || "U"}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">
+                        {session.user.name}
+                      </p>
+                      <p className="text-xs leading-none text-muted-foreground">
+                        {session.user.email}
+                      </p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut}>
+                    <Icons.logout className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+
             <ThemeToggleButton />
           </header>
           <main className="flex-1 overflow-y-auto p-6">{children}</main>

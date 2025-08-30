@@ -54,6 +54,11 @@ const navItems: NavItem[] = [
     icon: "records",
   },
   {
+    href: "/dashboard/profile",
+    label: "Profile",
+    icon: "user",
+  },
+  {
     href: "/emergency",
     label: "Emergency SOS",
     icon: "emergency",

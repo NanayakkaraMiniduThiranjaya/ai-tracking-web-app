@@ -15,6 +15,7 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { useSession } from "next-auth/react";
 import React from "react";
 
 const quickActions = [
@@ -85,7 +86,8 @@ const mockNotifications: Notification[] = [
 ];
 
 export default function DashboardPage() {
-  const userName = "Alex Johnson";
+  const { data: session } = useSession();
+  const userName = session?.user?.name || "Guest User";
 
   return (
     <div className="space-y-8">

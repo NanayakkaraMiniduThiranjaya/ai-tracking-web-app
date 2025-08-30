@@ -26,6 +26,7 @@ import { motion, useAnimation, easeOut } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import {
   ArrowRight,
   MessageSquare,
@@ -69,6 +70,7 @@ const AIAnimation = dynamic(
 export default function HomePage() {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
+  const { data: session, status } = useSession();
 
   const handleEmergencyConfirm = () => {
     router.push("/emergency");
@@ -138,13 +140,28 @@ export default function HomePage() {
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-2">
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-[#60A5FA] to-[#2563EB] hover:opacity-90 text-white font-semibold"
-            asChild
-          >
-            <Link href="/dashboard">Dashboard</Link>
-          </Button>
+          {session ? (
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-[#60A5FA] to-[#2563EB] hover:opacity-90 text-white font-semibold"
+              asChild
+            >
+              <Link href="/dashboard">Dashboard</Link>
+            </Button>
+          ) : (
+            <>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/auth/signin">Sign In</Link>
+              </Button>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-[#60A5FA] to-[#2563EB] hover:opacity-90 text-white font-semibold"
+                asChild
+              >
+                <Link href="/auth/signup">Get Started</Link>
+              </Button>
+            </>
+          )}
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button
@@ -236,15 +253,38 @@ export default function HomePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-[#60A5FA] to-[#2563EB] hover:opacity-90 text-white font-semibold"
-                  asChild
-                >
-                  <Link href="/dashboard">
-                    Go to Dashboard <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
+                {session ? (
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-[#60A5FA] to-[#2563EB] hover:opacity-90 text-white font-semibold"
+                    asChild
+                  >
+                    <Link href="/dashboard">
+                      Go to Dashboard <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                ) : (
+                  <>
+                    <Button
+                      size="lg"
+                      className="bg-gradient-to-r from-[#60A5FA] to-[#2563EB] hover:opacity-90 text-white font-semibold"
+                      asChild
+                    >
+                      <Link href="/auth/signup">
+                        Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      asChild
+                    >
+                      <Link href="/auth/signin">
+                        Sign In
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
             <div className="flex justify-center items-center">

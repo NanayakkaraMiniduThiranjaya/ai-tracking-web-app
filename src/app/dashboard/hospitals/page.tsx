@@ -42,7 +42,7 @@ export default function HospitalsPage() {
   return (
     <div className="space-y-8">
       <header className="space-y-2">
-        <h1 className="font-headline text-3xl font-semibold bg-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent drop-shadow-sm">
+        <h1 className="font-headline text-3xl font-semibold text-foreground drop-shadow-sm">
           Find Hospitals
         </h1>
         <p className="text-muted-foreground">

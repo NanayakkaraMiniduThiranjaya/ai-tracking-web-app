@@ -31,7 +31,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             >
               <Icons.logo className="h-7 w-7" />
               {/* The app name span will be hidden when the sidebar is collapsed to icon-only view on desktop */}
-              <span className="group-data-[collapsible=icon]:hidden transition-opacity duration-200 text-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent">
+              <span className="group-data-[collapsible=icon]:hidden transition-opacity duration-200">
                 MediCare
               </span>
             </Link>
@@ -46,7 +46,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           {/* SidebarFooter: A small section at the bottom of the sidebar.
               border-t adds a top border. */}
           <SidebarFooter className="p-4 border-t">
-            <p className="text-xs text-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent text-center group-data-[collapsible=icon]:hidden">
+            <p className="text-xs text-muted-foreground text-center group-data-[collapsible=icon]:hidden">
               MediCare App
             </p>
           </SidebarFooter>
@@ -54,8 +54,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
         {/* SidebarInsert :- This component wraps the main content area when we change the routing with the help of the sidebar. */}
 
-        <SidebarInset className="flex flex-col flex-1 bg-gradient-to-br from-orange-50 via-teal-50 to-white">
-          <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-gradient-to-r from-orange-100 to-teal-100 backdrop-blur-sm px-6">
+        <SidebarInset className="flex flex-col flex-1">
+          <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-6">
             {/* SidebarTrigger: This is typically a hamburger icon button.
                 It's shown on mobile (md:hidden) to open/close the sidebar. */}
             <SidebarTrigger className="md:hidden" />

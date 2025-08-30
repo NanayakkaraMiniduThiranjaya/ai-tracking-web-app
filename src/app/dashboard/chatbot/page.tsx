@@ -71,11 +71,12 @@ export default function ChatbotPage() {
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)]">
       <header className="mb-6">
-        <h1 className="font-headline text-3xl font-semibold bg-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent drop-shadow-sm">
+        <h1 className="font-headline text-3xl font-semibold text-foreground drop-shadow-sm">
           MediCare AI Chat
         </h1>
         <p className="text-muted-foreground">
-          Your personal AI health assistant. Ask me anything about general health topics.
+          Your personal AI health assistant. Ask me anything about general
+          health topics.
         </p>
       </header>
 
@@ -171,7 +172,7 @@ export default function ChatbotPage() {
               </Button>
             </form>
             <p className="text-xs text-center text-muted-foreground mt-2">
-              ByteRoot Chatbot is for informational purposes and does not
+              MediCare Chatbot is for informational purposes and does not
               provide medical advice.
             </p>
           </div>

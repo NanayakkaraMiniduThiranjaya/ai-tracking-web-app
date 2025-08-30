@@ -1,14 +1,14 @@
-# ByteRoot - Your AI Health Companion
+# MediCare - Your AI Health Companion
 
-ByteRoot is a comprehensive AI-powered health companion application designed to help users manage their health through intelligent symptom analysis, medical document processing, hospital booking, and emergency assistance. Built with modern web technologies and powered by Google AI, ByteRoot offers an intuitive, AI-driven experience for managing health-related tasks.
+MediCare is a comprehensive AI-powered health companion application designed to help users manage their health through intelligent symptom analysis, medical document processing, hospital booking, and emergency assistance. Built with modern web technologies and powered by Google AI, MediCare offers an intuitive, AI-driven experience for managing health-related tasks.
 
 ## 🌐 Live Demo
 
-You can check out the live demo of the project here: 💖 [ByteRoot - Live Demo](https://byte-root-team.vercel.app/)
+You can check out the live demo of the project here: 💖 [MediCare - Live Demo](https://byte-root-team.vercel.app/)
 
 ## 🌟 Overview
 
-ByteRoot combines cutting-edge AI technology and robust web frameworks to provide an intuitive platform for managing health and medical tasks. Users can interact with AI-powered tools for symptom checking, medical image analysis, drug interaction checking, and more.
+MediCare combines cutting-edge AI technology and robust web frameworks to provide an intuitive platform for managing health and medical tasks. Users can interact with AI-powered tools for symptom checking, medical image analysis, drug interaction checking, and more.
 
 ---
 

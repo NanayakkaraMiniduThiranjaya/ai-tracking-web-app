@@ -232,7 +232,7 @@ Disclaimer: Always consult a doctor.`;
           <div className="flex items-center gap-2 pb-2 sm:pb-3 border-b border-white/10">
             <div className="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
             <span className="text-muted-foreground text-xs sm:text-sm font-medium">
-              ByteRoot AI Assistant
+              MediCare AI Assistant
             </span>
           </div>
 

@@ -133,14 +133,14 @@ export default function HomePage() {
       <header className="container mx-auto py-6 flex items-center justify-between relative z-10 px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2 group">
           <Icons.logo className="h-8 w-8 text-primary transition-transform duration-300 group-hover:rotate-[360deg]" />
-          <span className="text-2xl font-bold font-headline bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+          <span className="text-2xl font-bold font-headline bg-gradient-to-r from-[#60A5FA] to-[#2563EB] bg-clip-text text-transparent">
             MediCare
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-2">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-[#2EE59D] to-[#14C2F1] hover:opacity-90 text-black font-semibold"
+            className="bg-gradient-to-r from-[#60A5FA] to-[#2563EB] hover:opacity-90 text-white font-semibold"
             asChild
           >
             <Link href="/dashboard">Dashboard</Link>
@@ -214,7 +214,7 @@ export default function HomePage() {
         </div>
       </header>
 
-  <main className="bg-gradient-to-br from-orange-50 via-teal-50 to-white min-h-screen">
+      <main>
         {/* Hero Section */}
         <section
           id="about"
@@ -224,7 +224,7 @@ export default function HomePage() {
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight font-headline mb-6">
                 Check. Connect. Cure.{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-500">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#60A5FA] to-[#2563EB]">
                   Seamlessly
                 </span>{" "}
                 — powered by AI.
@@ -238,7 +238,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold shadow-lg"
+                  className="bg-gradient-to-r from-[#60A5FA] to-[#2563EB] hover:opacity-90 text-white font-semibold"
                   asChild
                 >
                   <Link href="/dashboard">
@@ -254,7 +254,7 @@ export default function HomePage() {
         </section>
 
         {/* Features Auto-scroll Section */}
-  <section className="py-24 bg-gradient-to-b from-orange-100 to-teal-100">
+        <section className="py-24 bg-gradient-to-b from-[#0c0c10] to-[#0f0f1a]">
           <div className="container mx-auto px-4">
             <motion.h2
               className="font-space-grotesk text-4xl sm:text-5xl font-bold text-center text-white mb-16 drop-shadow-lg"
@@ -262,7 +262,7 @@ export default function HomePage() {
               custom={0}
             >
               Core{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-teal-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] to-[#2563EB]">
                 Features
               </span>
             </motion.h2>
@@ -288,7 +288,7 @@ export default function HomePage() {
                     variants={fadeInUp}
                     custom={index * 0.1}
                   >
-                    <Card className="h-full text-center rounded-2xl transition-all duration-300 ease-in-out bg-card/70 dark:bg-card/60 backdrop-blur-sm border border-white/5 hover:bg-gradient-to-br hover:from-[#2EE59D]/10 hover:to-[#14C2F1]/10 hover:shadow-xl hover:-translate-y-2">
+                    <Card className="h-full text-center rounded-2xl transition-all duration-300 ease-in-out bg-card/70 dark:bg-card/60 backdrop-blur-sm border border-white/5 hover:bg-gradient-to-br hover:from-[#60A5FA]/10 hover:to-[#2563EB]/10 hover:shadow-xl hover:-translate-y-2">
                       <CardHeader className="flex-grow">
                         <div className="mx-auto bg-primary/10 rounded-full p-4 w-fit mb-4 transition-transform duration-300">
                           <feature.icon className="h-10 w-10 text-primary" />
@@ -324,7 +324,7 @@ export default function HomePage() {
 
         {/* Image + Content Section */}
         {/* Image + Content Section */}
-  <section className="relative py-24 bg-gradient-to-b from-orange-100 to-teal-100 overflow-hidden">
+        <section className="relative py-24 bg-gradient-to-b from-[#0c0c10] to-[#0f0f1a] overflow-hidden">
           {/* Soft background blur effects */}
           <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
             <div className="absolute top-[10%] left-[5%] w-[40%] h-[40%] bg-primary/20 blur-[100px] rounded-full" />
@@ -352,14 +352,14 @@ export default function HomePage() {
                   className="rounded-2xl"
                 />
                 {/* Glow effect inside image container */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#2EE59D]/10 to-[#14C2F1]/10 blur-[100px] rounded-2xl pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#60A5FA]/10 to-[#2563EB]/10 blur-[100px] rounded-2xl pointer-events-none" />
               </motion.div>
 
               {/* Right: Text content */}
               <motion.div variants={fadeInUp} className="md:w-1/2">
                 <h2 className="font-space-grotesk text-4xl sm:text-5xl font-bold text-white mb-6 drop-shadow-lg">
                   Smart{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-teal-400">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2EE59D] to-[#14C2F1]">
                     Health Companion
                   </span>
                 </h2>
@@ -386,7 +386,7 @@ export default function HomePage() {
 
                 <Button
                   asChild
-                  className="mt-8 rounded-lg bg-gradient-to-r from-orange-500 to-teal-400 text-white font-semibold hover:opacity-90 shadow-lg border-2 border-orange-300"
+                  className="mt-8 rounded-lg bg-gradient-to-r from-[#60A5FA] to-[#2563EB] text-white font-semibold hover:opacity-90"
                 >
                   <Link href="/dashboard/chatbot">
                     <Icons.chatbot className="mr-2 h-5 w-5" />
@@ -401,17 +401,17 @@ export default function HomePage() {
 
       <motion.footer
         variants={fadeInUp}
-        className="py-10 bg-gradient-to-r from-orange-100 to-teal-100 text-gray-700 border-t-2 border-orange-300"
+        className="py-10 bg-gray-900 text-gray-200"
       >
         <div className="container mx-auto text-center">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <span className="font-semibold bg-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent">
+            <span className="font-semibold bg-gradient-to-r from-[#60A5FA] to-[#2563EB] bg-clip-text text-transparent">
               MediCare
             </span>
             . All rights reserved.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-400">
             Your trusted partner in health management.
           </p>
         </div>

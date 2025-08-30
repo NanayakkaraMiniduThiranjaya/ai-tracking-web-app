@@ -58,7 +58,7 @@ export default function HospitalDetailPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
         </div>
         <div className="relative container mx-auto px-6 pb-6 -mt-20 md:-mt-24 z-10">
-          <h1 className="font-headline text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent mb-2 drop-shadow-md">
+          <h1 className="font-headline text-3xl md:text-4xl font-bold text-foreground mb-2 drop-shadow-md">
             {hospital.name}
           </h1>
           <p className="text-lg text-muted-foreground flex items-center mb-1">

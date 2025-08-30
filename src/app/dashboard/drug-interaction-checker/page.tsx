@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { useState, type FormEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -85,16 +85,18 @@ export default function DrugInteractionChecker() {
         <div className="absolute top-[20%] -left-[10%] w-[40%] h-[60%] bg-accent/20 blur-[120px] rounded-full" />
         <div className="absolute bottom-[10%] right-[20%] w-[30%] h-[40%] bg-secondary/20 blur-[120px] rounded-full" />
       </div>
-      <h1 className="font-headline text-3xl font-semibold bg-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent drop-shadow-sm">
-        MediCare Drug Interaction Checker (Beta)
+      <h1 className="font-headline text-3xl font-semibold text-foreground drop-shadow-sm">
+        AI Drug Interaction Checker (Beta)
       </h1>
       <Card className="shadow-lg max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-xl font-headline flex items-center gap-2 bg-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent">
-            <Icons.tablet className="h-6 w-6 text-primary" /> Drug Interaction Checker
+          <CardTitle className="text-xl font-headline flex items-center gap-2">
+            Enter Medicines
           </CardTitle>
           <CardDescription>
-            Enter 2 to 3 medicine names to check the potential interactions. This tool is powered by AI and does not replace professional medical advice.
+            Enter 2 to 3 medicine names to check the potential interactions.This
+            tool is powered by AI and does not replace professional medical
+            advice.
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>

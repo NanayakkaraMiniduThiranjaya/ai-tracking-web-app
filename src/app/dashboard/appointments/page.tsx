@@ -119,12 +119,14 @@ export default function AppointmentsPage() {
   return (
     <div className="space-y-6">
       <header className="flex flex-col md:flex-row justify-between md:items-center gap-4">
-        <h1 className="font-headline text-3xl font-semibold bg-gradient-to-r from-orange-500 to-teal-400 bg-clip-text text-transparent drop-shadow-sm">
-          Appointments
+        <h1 className="font-headline text-3xl font-semibold text-foreground drop-shadow-sm">
+          Appointments & Reminders
         </h1>
-        <p className="text-muted-foreground">
-          View and manage your upcoming appointments and reminders.
-        </p>
+        <Button asChild>
+          <Link href="/dashboard/hospitals">
+            <Icons.add className="mr-2 h-4 w-4" /> Book New Appointment
+          </Link>
+        </Button>
       </header>
 
       {/* shadcn component which will render one tab at a time */}

@@ -15,14 +15,13 @@ MediCare combines cutting-edge AI technology and robust web frameworks to provid
 MediCare now includes a comprehensive authentication system with:
 
 - **Google OAuth Integration** - Sign in with your Google account
-- **Facebook OAuth Integration** - Sign in with your Facebook account  
 - **Protected Routes** - Dashboard and user-specific features require authentication
 - **Session Management** - Secure JWT-based session handling
 - **User Profile Integration** - Personalized experience based on user information
 
 ### Setting up Authentication
 
-1. **Environment Variables**: Copy `.env.local` and configure:
+1. **Environment Variables**: Configure your `.env` file with:
    ```env
    NEXTAUTH_URL=http://localhost:3000
    NEXTAUTH_SECRET=your-super-secret-key-here-change-this-in-production
@@ -30,10 +29,6 @@ MediCare now includes a comprehensive authentication system with:
    # Google OAuth (Get from Google Cloud Console)
    GOOGLE_CLIENT_ID=your-google-client-id
    GOOGLE_CLIENT_SECRET=your-google-client-secret
-   
-   # Facebook OAuth (Get from Facebook Developers)
-   FACEBOOK_CLIENT_ID=your-facebook-client-id
-   FACEBOOK_CLIENT_SECRET=your-facebook-client-secret
    
    # MongoDB Database
    MONGODB_URI=mongodb+srv://username:password@cluster0.xxx.mongodb.net/database?retryWrites=true&w=majority
@@ -52,12 +47,6 @@ MediCare now includes a comprehensive authentication system with:
    - Enable Google+ API
    - Create OAuth 2.0 credentials
    - Add authorized redirect URIs: `http://localhost:3000/api/auth/callback/google`
-
-4. **Facebook OAuth Setup**:
-   - Go to [Facebook Developers](https://developers.facebook.com/)
-   - Create a new app
-   - Add Facebook Login product
-   - Configure OAuth redirect URIs: `http://localhost:3000/api/auth/callback/facebook`
 
 ### Authentication Features
 

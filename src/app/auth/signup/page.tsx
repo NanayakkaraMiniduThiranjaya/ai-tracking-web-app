@@ -138,18 +138,6 @@ export default function SignUpPage() {
                 Sign up with Google
               </Button>
             )}
-            
-            {providers && providers.facebook && (
-              <Button
-                variant="outline"
-                onClick={() => handleSocialSignUp("facebook")}
-                disabled={isLoading}
-                className="w-full"
-              >
-                <Icons.facebook className="mr-2 h-4 w-4" />
-                Sign up with Facebook
-              </Button>
-            )}
           </div>
 
           <div className="relative">

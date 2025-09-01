@@ -169,18 +169,6 @@ export default function SignInPage() {
                 Continue with Google
               </Button>
             )}
-            
-            {providers && providers.facebook && (
-              <Button
-                variant="outline"
-                onClick={() => handleSocialSignIn("facebook")}
-                disabled={isLoading}
-                className="w-full"
-              >
-                <Icons.facebook className="mr-2 h-4 w-4" />
-                Continue with Facebook
-              </Button>
-            )}
           </div>
 
           <div className="relative">

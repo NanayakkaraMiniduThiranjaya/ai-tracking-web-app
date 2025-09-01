@@ -145,7 +145,7 @@ export default function SignInPage() {
                   <div className="mt-2 text-sm text-yellow-700">
                     <p>
                       Social sign-in is not available. Please configure your OAuth providers in the{" "}
-                      <code className="bg-yellow-100 px-1 py-0.5 rounded text-xs">.env.local</code> file.
+                      <code className="bg-yellow-100 px-1 py-0.5 rounded text-xs">.env</code> file.
                     </p>
                     <p className="mt-1">
                       See <code>OAUTH_SETUP.md</code> for detailed instructions.

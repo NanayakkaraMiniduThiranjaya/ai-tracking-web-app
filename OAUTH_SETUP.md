@@ -42,7 +42,7 @@
 8. **Copy the Client ID and Client Secret** - you'll need these!
 
 ### 5. Update Environment Variables
-Replace the placeholder values in your `.env.local` file:
+Replace the placeholder values in your `.env` file:
 
 ```bash
 GOOGLE_CLIENT_ID=your-actual-google-client-id-here

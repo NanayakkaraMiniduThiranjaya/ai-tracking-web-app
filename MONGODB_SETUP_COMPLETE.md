@@ -6,7 +6,7 @@
 - **MongoDB Connection**: Using your Atlas cluster
 - **Connection String**: `mongodb+srv://thiranjaya2003_db_user:0LjTUcg0etWIv4xG@cluster0.qduzekm.mongodb.net/medicare?retryWrites=true&w=majority&appName=Cluster0`
 - **Database Name**: `medicare`
-- **Environment File**: Using `.env` (`.env.local` deprecated)
+- **Environment File**: Using `.env` (`.env` deprecated)
 
 ### 🔐 Authentication System
 - **MongoDB Adapter**: Full user data persistence

@@ -16,7 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { memo, useMemo, Suspense } from "react";
+import { DashboardSkeleton } from "@/components/ui/loading";
 
 const quickActions = [
   {
@@ -85,188 +86,211 @@ const mockNotifications: Notification[] = [
   },
 ];
 
+const QuickActionCard = memo(({ action }: { action: any }) => {
+  const IconComponent = action.icon;
+  return (
+    <Card className="hover:shadow-xl transition-shadow duration-300 rounded-2xl flex flex-col bg-card/80 backdrop-blur-sm">
+      <CardHeader className="pb-4">
+        <div className="p-3 rounded-full bg-primary/10 w-fit">
+          <IconComponent className="h-7 w-7 text-primary" />
+        </div>
+      </CardHeader>
+      <CardContent className="flex-grow">
+        <CardTitle className="text-lg font-semibold">
+          {action.label}
+        </CardTitle>
+        <CardDescription className="mt-1 text-sm h-10">
+          {action.description}
+        </CardDescription>
+      </CardContent>
+      <CardFooter>
+        <Button
+          asChild
+          className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground text-black font-semibold hover:opacity-90"
+        >
+          <Link href={action.href}>
+            Access
+            <Icons.chevronRight className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+});
+
+QuickActionCard.displayName = "QuickActionCard";
+
+const NotificationItem = memo(({ notification, index, total }: { 
+  notification: Notification; 
+  index: number;
+  total: number;
+}) => {
+  const IconComponent = Icons[notification.icon] || Icons.notifications;
+  return (
+    <React.Fragment key={notification.id}>
+      <div className="flex items-start space-x-4 p-3 hover:bg-muted/50 rounded-lg">
+        <div
+          className={`mt-1 p-2 rounded-full ${
+            notification.read ? "bg-muted" : "bg-primary/10"
+          }`}
+        >
+          <IconComponent
+            className={`h-5 w-5 ${
+              notification.read
+                ? "text-muted-foreground"
+                : "text-primary"
+            }`}
+          />
+        </div>
+        <div className="flex-1">
+          <p
+            className={`font-medium ${
+              notification.read
+                ? "text-muted-foreground"
+                : "text-foreground"
+            }`}
+          >
+            {notification.title}
+          </p>
+          <p
+            className={`text-sm ${
+              notification.read
+                ? "text-muted-foreground/80"
+                : "text-muted-foreground"
+            }`}
+          >
+            {notification.description}
+          </p>
+          <p className="text-xs text-muted-foreground/70 mt-1">
+            {notification.time}
+          </p>
+        </div>
+        {notification.isNew && !notification.read && (
+          <Badge
+            variant="default"
+            className="h-fit animate-pulse-badge"
+          >
+            New
+          </Badge>
+        )}
+      </div>
+      {index < total - 1 && <Separator />}
+    </React.Fragment>
+  );
+});
+
+NotificationItem.displayName = "NotificationItem";
+
 export default function DashboardPage() {
   const { data: session } = useSession();
-  const userName = session?.user?.name || "Guest User";
+  
+  const userName = useMemo(() => 
+    session?.user?.name || "Guest User", 
+    [session?.user?.name]
+  );
+
+  const quickActionCards = useMemo(() => 
+    quickActions.map((action) => (
+      <QuickActionCard key={action.label} action={action} />
+    )), 
+    []
+  );
+
+  const notificationItems = useMemo(() =>
+    mockNotifications.map((notification, index) => (
+      <NotificationItem
+        key={notification.id}
+        notification={notification}
+        index={index}
+        total={mockNotifications.length}
+      />
+    )),
+    []
+  );
 
   return (
-    <div className="space-y-8">
-      {" "}
-      {/* Increased gap for cards */}
-      <h1 className="font-headline text-3xl md:text-4xl font-semibold text-foreground drop-shadow-md">
-        Welcome back, {userName}!
-      </h1>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {quickActions.map((action) => {
-          const IconComponent = action.icon;
-          return (
-            <Card
-              key={action.label}
-              className="hover:shadow-xl transition-shadow duration-300 rounded-2xl animate-subtle-slide-up flex flex-col bg-card/80 backdrop-blur-sm"
-            >
-              <CardHeader className="pb-4">
-                <div className="p-3 rounded-full bg-primary/10 w-fit">
-                  <IconComponent className="h-7 w-7 text-primary" />
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardTitle className="text-lg font-semibold">
-                  {action.label}
-                </CardTitle>
-                <CardDescription className="mt-1 text-sm h-10">
-                  {action.description}
-                </CardDescription>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  asChild
-                  className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground text-black font-semibold hover:opacity-90"
-                >
-                  <Link href={action.href}>
-                    Access
-                    <Icons.chevronRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          );
-        })}
-      </div>
-      <div className="grid gap-8 lg:grid-cols-3">
-        {" "}
-        {/* Increased gap */}
-        <Card
-          className="lg:col-span-2 rounded-2xl animate-subtle-slide-up"
-          style={{ animationDelay: "0.1s" }}
-        >
-          <CardHeader>
-            <CardTitle className="font-headline text-2xl">
-              Recent Activity & Notifications
-            </CardTitle>
-            <CardDescription>
-              Stay updated with your latest health activities and alerts.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ScrollArea className="h-[300px] pr-3">
-              {mockNotifications.length > 0 ? (
-                <div className="space-y-4">
-                  {mockNotifications.map((notification, index) => {
-                    const IconComponent =
-                      Icons[notification.icon] || Icons.notifications;
-                    return (
-                      <React.Fragment key={notification.id}>
-                        <div className="flex items-start space-x-4 p-3 hover:bg-muted/50 rounded-lg">
-                          <div
-                            className={`mt-1 p-2 rounded-full ${
-                              notification.read ? "bg-muted" : "bg-primary/10"
-                            }`}
-                          >
-                            <IconComponent
-                              className={`h-5 w-5 ${
-                                notification.read
-                                  ? "text-muted-foreground"
-                                  : "text-primary"
-                              }`}
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <p
-                              className={`font-medium ${
-                                notification.read
-                                  ? "text-muted-foreground"
-                                  : "text-foreground"
-                              }`}
-                            >
-                              {notification.title}
-                            </p>
-                            <p
-                              className={`text-sm ${
-                                notification.read
-                                  ? "text-muted-foreground/80"
-                                  : "text-muted-foreground"
-                              }`}
-                            >
-                              {notification.description}
-                            </p>
-                            <p className="text-xs text-muted-foreground/70 mt-1">
-                              {notification.time}
-                            </p>
-                          </div>
-                          {notification.isNew && !notification.read && (
-                            <Badge
-                              variant="default"
-                              className="h-fit animate-pulse-badge"
-                            >
-                              New
-                            </Badge>
-                          )}
-                        </div>
-                        {index < mockNotifications.length - 1 && <Separator />}
-                      </React.Fragment>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div className="text-center py-10">
-                  <Icons.notifications className="mx-auto h-12 w-12 text-muted-foreground" />
-                  <p className="mt-4 text-muted-foreground">
-                    No new notifications.
+    <Suspense fallback={<DashboardSkeleton />}>
+      <div className="space-y-8">
+        <h1 className="font-headline text-3xl md:text-4xl font-semibold text-foreground drop-shadow-md">
+          Welcome back, {userName}!
+        </h1>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {quickActionCards}
+        </div>
+        <div className="grid gap-8 lg:grid-cols-3">
+          <Card className="lg:col-span-2 rounded-2xl">
+            <CardHeader>
+              <CardTitle className="font-headline text-2xl">
+                Recent Activity & Notifications
+              </CardTitle>
+              <CardDescription>
+                Stay updated with your latest health activities and alerts.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ScrollArea className="h-[300px] pr-3">
+                {mockNotifications.length > 0 ? (
+                  <div className="space-y-4">
+                    {notificationItems}
+                  </div>
+                ) : (
+                  <div className="text-center py-10">
+                    <Icons.notifications className="mx-auto h-12 w-12 text-muted-foreground" />
+                    <p className="mt-4 text-muted-foreground">
+                      No new notifications.
+                    </p>
+                  </div>
+                )}
+              </ScrollArea>
+            </CardContent>
+          </Card>
+          <Card className="rounded-2xl glassmorphic">
+            <CardHeader>
+              <CardTitle className="font-headline text-2xl">
+                Your Health Snapshot
+              </CardTitle>
+              <CardDescription>
+                A quick overview of your health status.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between p-3 bg-card/80 dark:bg-card/70 rounded-lg shadow-sm">
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    Next Appointment
+                  </p>
+                  <p className="font-semibold text-foreground">
+                    Dr. Smith - Tomorrow, 10 AM
                   </p>
                 </div>
-              )}
-            </ScrollArea>
-          </CardContent>
-        </Card>
-        <Card
-          className="rounded-2xl glassmorphic animate-subtle-slide-up"
-          style={{ animationDelay: "0.2s" }}
-        >
-          {" "}
-          {/* Glassmorphism applied here */}
-          <CardHeader>
-            <CardTitle className="font-headline text-2xl">
-              Your Health Snapshot
-            </CardTitle>
-            <CardDescription>
-              A quick overview of your health status.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between p-3 bg-card/80 dark:bg-card/70 rounded-lg shadow-sm">
-              <div>
-                <p className="text-sm text-muted-foreground">
-                  Next Appointment
-                </p>
-                <p className="font-semibold text-foreground">
-                  Dr. Smith - Tomorrow, 10 AM
-                </p>
+                <Icons.appointments className="h-6 w-6 text-primary" />
               </div>
-              <Icons.appointments className="h-6 w-6 text-primary" />
-            </div>
-            <div className="flex items-center justify-between p-3 bg-card/80 dark:bg-card/70 rounded-lg shadow-sm">
-              <div>
-                <p className="text-sm text-muted-foreground">
-                  Active Prescriptions
-                </p>
-                <p className="font-semibold text-foreground">2 medications</p>
+              <div className="flex items-center justify-between p-3 bg-card/80 dark:bg-card/70 rounded-lg shadow-sm">
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    Active Prescriptions
+                  </p>
+                  <p className="font-semibold text-foreground">2 medications</p>
+                </div>
+                <Icons.pills className="h-6 w-6 text-primary" />
               </div>
-              <Icons.pills className="h-6 w-6 text-primary" />
-            </div>
-            <div className="text-center mt-6">
-              <Image
-                src="https://img.freepik.com/free-vector/3d-medical-icon-with-doctor-nurse_107791-16582.jpg"
-                alt="3D Medical Illustration"
-                width={300}
-                height={200}
-                className="rounded-lg mx-auto shadow-md"
-                data-ai-hint="doctor nurse"
-              />
-              <p className="text-xs text-muted-foreground mt-2"></p>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="text-center mt-6">
+                <Image
+                  src="https://img.freepik.com/free-vector/3d-medical-icon-with-doctor-nurse_107791-16582.jpg"
+                  alt="3D Medical Illustration"
+                  width={300}
+                  height={200}
+                  className="rounded-lg mx-auto shadow-md"
+                  data-ai-hint="doctor nurse"
+                  priority={false}
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground mt-2"></p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }

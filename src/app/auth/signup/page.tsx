@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation"
 
 export default function SignUpPage() {
   const [providers, setProviders] = useState<any>(null)
+  const [providersLoaded, setProvidersLoaded] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -23,11 +24,18 @@ export default function SignUpPage() {
 
   useEffect(() => {
     const setAuthProviders = async () => {
-      const res = await getProviders()
-      setProviders(res)
+      if (providersLoaded) return;
+      try {
+        const res = await getProviders()
+        setProviders(res)
+      } catch (error) {
+        console.error('Failed to load providers:', error)
+      } finally {
+        setProvidersLoaded(true)
+      }
     }
     setAuthProviders()
-  }, [])
+  }, [providersLoaded])
 
   const handleSocialSignUp = async (providerId: string) => {
     setIsLoading(true)

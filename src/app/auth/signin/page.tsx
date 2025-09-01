@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast"
 
 export default function SignInPage() {
   const [providers, setProviders] = useState<any>(null)
+  const [providersLoaded, setProvidersLoaded] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -22,11 +23,18 @@ export default function SignInPage() {
 
   useEffect(() => {
     const setAuthProviders = async () => {
-      const res = await getProviders()
-      setProviders(res)
+      if (providersLoaded) return;
+      try {
+        const res = await getProviders()
+        setProviders(res)
+      } catch (error) {
+        console.error('Failed to load providers:', error)
+      } finally {
+        setProvidersLoaded(true)
+      }
     }
     setAuthProviders()
-  }, [])
+  }, [providersLoaded])
 
   const handleSocialSignIn = async (providerId: string) => {
     setIsLoading(true)

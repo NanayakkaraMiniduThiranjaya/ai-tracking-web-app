@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getChatbotResponse } from '@/ai/flows/chatbot';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,13 +11,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Dynamic import to avoid issues with server-side AI libraries
+    const { getChatbotResponse } = await import('@/ai/flows/chatbot');
     const result = await getChatbotResponse({ message });
 
     return NextResponse.json({ response: result.response });
   } catch (error) {
     console.error('Chatbot API Error:', error);
     return NextResponse.json(
-      { error: 'Failed to get chatbot response' },
+      { 
+        error: 'Failed to get chatbot response',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }

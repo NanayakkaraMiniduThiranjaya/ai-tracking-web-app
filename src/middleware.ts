@@ -1,8 +1,8 @@
-import { auth } from "@/lib/auth"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
+import { getToken } from "next-auth/jwt"
 
-export const runtime = 'nodejs'
+// Remove runtime specification to use default edge runtime for middleware
 
 // Define protected routes
 const protectedRoutes = ["/dashboard"]
@@ -11,7 +11,12 @@ const protectedRoutes = ["/dashboard"]
 const publicRoutes = ["/auth/signin", "/auth/error"]
 
 export async function middleware(request: NextRequest) {
-  const session = await auth()
+  // Use getToken instead of auth() for edge compatibility
+  const token = await getToken({ 
+    req: request,
+    secret: process.env.NEXTAUTH_SECRET
+  })
+  
   const { pathname } = request.nextUrl
 
   // Check if the route is protected
@@ -25,14 +30,14 @@ export async function middleware(request: NextRequest) {
   )
 
   // If trying to access protected route without session, redirect to signin
-  if (isProtectedRoute && !session) {
+  if (isProtectedRoute && !token) {
     const signInUrl = new URL("/auth/signin", request.url)
     signInUrl.searchParams.set("callbackUrl", pathname)
     return NextResponse.redirect(signInUrl)
   }
 
   // If trying to access auth pages with active session, redirect to dashboard
-  if (isPublicRoute && session) {
+  if (isPublicRoute && token) {
     return NextResponse.redirect(new URL("/dashboard", request.url))
   }
 

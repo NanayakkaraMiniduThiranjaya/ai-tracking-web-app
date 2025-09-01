@@ -59,8 +59,6 @@ const nextConfig = {
     },
     // Optimize server-side packages
     serverExternalPackages: ['mongodb', 'mongoose', '@genkit-ai/googleai', 'genkit'],
-    // Enable output file tracing for smaller deployments
-    output: 'standalone',
     // Disable source maps in production for smaller builds
     productionBrowserSourceMaps: false,
 };

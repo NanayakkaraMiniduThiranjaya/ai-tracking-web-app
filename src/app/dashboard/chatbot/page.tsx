@@ -6,7 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Icons } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
-import { getChatbotResponse } from "@/ai/flows/chatbot";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -46,7 +45,19 @@ export default function ChatbotPage() {
     setIsLoading(true);
 
     try {
-      const result = await getChatbotResponse({ message: input });
+      const response = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: input }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
       const assistantMessage: Message = {
         role: "assistant",
         content: result.response,

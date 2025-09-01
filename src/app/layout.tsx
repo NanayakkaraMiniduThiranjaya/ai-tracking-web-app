@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AppProviders } from "@/components/layout/app-provider";
 import { Icons } from "@/components/icons";
+import { PerformanceMonitor } from "@/components/performance-monitor";
 
 export const metadata: Metadata = {
   title: "MediCare - Your Health Companion",

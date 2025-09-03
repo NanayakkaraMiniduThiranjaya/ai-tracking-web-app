@@ -26,6 +26,7 @@ export default function SignInPage() {
       if (providersLoaded) return;
       try {
         const res = await getProviders()
+        console.log('Providers loaded:', res) // Debug log
         setProviders(res)
       } catch (error) {
         console.error('Failed to load providers:', error)

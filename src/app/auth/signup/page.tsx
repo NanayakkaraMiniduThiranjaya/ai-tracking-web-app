@@ -27,6 +27,7 @@ export default function SignUpPage() {
       if (providersLoaded) return;
       try {
         const res = await getProviders()
+        console.log('Providers loaded:', res) // Debug log
         setProviders(res)
       } catch (error) {
         console.error('Failed to load providers:', error)
@@ -125,6 +126,34 @@ export default function SignUpPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          {/* Debug Information */}
+          {process.env.NODE_ENV === 'development' && (
+            <div className="p-2 bg-yellow-100 text-yellow-800 text-xs rounded">
+              Debug: Providers loaded: {JSON.stringify(providers)}
+            </div>
+          )}
+          
+          {/* OAuth Configuration Status */}
+          {(!providers || Object.keys(providers).length === 0) && (
+            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <Icons.alertTriangle className="h-5 w-5 text-yellow-400" />
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-yellow-800">
+                    OAuth Not Configured
+                  </h3>
+                  <div className="mt-2 text-sm text-yellow-700">
+                    <p>
+                      Social sign-in is not available. Please configure your OAuth providers.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Social Sign Up Buttons */}
           <div className="space-y-2">
             {providers && providers.google && (
